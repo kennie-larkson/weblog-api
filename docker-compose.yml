@@ -1,14 +1,12 @@
 version: '3'
 services:
   postgres:
-    container_name: postgres
+    container_name: weblog_postgres
     image: postgres:latest
     ports:
       - '5432:5432'
     volumes:
-      #- /Users/data/postgres:/data/postgres
       - './data/postgres:/data/postgres'
-      #- './data.sql:/data/postgres/1.sql'
 
     env_file:
       - docker.env
@@ -18,7 +16,7 @@ services:
   pgadmin:
     links:
       - postgres:postgres
-    container_name: pgadmin
+    container_name: weblog_pgadmin
     image: dpage/pgadmin4
     ports:
       - '8080:80'
